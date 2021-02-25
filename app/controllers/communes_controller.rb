@@ -4,4 +4,8 @@ class CommunesController < ApplicationController
     @communes = Commune.to_hash
     render json: @communes
   end
+  
+  def create
+    render_forbidden and return
+  end
 end

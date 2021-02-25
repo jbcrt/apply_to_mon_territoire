@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     render json: { errors: "Not acceptable" },
       status: :not_acceptable
   end
+
+  def render_forbidden
+    render json: { errors: "Forbidden" },
+      status: :forbidden
+  end
 end
