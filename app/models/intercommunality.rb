@@ -1,4 +1,6 @@
 class Intercommunality < ApplicationRecord
+  has_many :communes
+  
   validates :name, :siren, presence: true
   validates :siren, uniqueness: { case_sensitive: false },
                     numericality: { only_integer: true },

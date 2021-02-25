@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210225195507) do
+ActiveRecord::Schema.define(version: 20210225200314) do
 
   create_table "communes", force: :cascade do |t|
     t.string   "code_insee"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "intercommunality_id"
+    t.index ["intercommunality_id"], name: "index_communes_on_intercommunality_id"
   end
 
   create_table "intercommunalities", force: :cascade do |t|
