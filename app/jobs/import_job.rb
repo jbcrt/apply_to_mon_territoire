@@ -15,6 +15,10 @@ class ImportJob < ApplicationJob
     CSV.foreach(csv, csv_options) do |row|
       intercommunality = Intercommunality.where(name: row['nom_complet'], siren: row['siren_epci'], form: intercommunality_form[row['form_epci']]).first_or_create
       commune = Commune.where(code_insee: row['insee'], name: row['nom_com'], population: row['pop_total']).first_or_create
+      if commune.intercommunality.nil?
+        commune.intercommunality = intercommunality
+        commune.save
+      end
     end
   end
 end
