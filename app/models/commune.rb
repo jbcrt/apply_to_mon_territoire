@@ -9,4 +9,8 @@ class Commune < ApplicationRecord
   def self.search(city)
     Commune.where("lower(name) LIKE ?", "%#{sanitize_sql_like(city.downcase)}%")
   end
+
+  def self.to_hash
+    Commune.all.pluck(:code_insee, :name).to_h
+  end
 end
