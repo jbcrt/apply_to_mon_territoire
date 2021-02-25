@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210225200314) do
+ActiveRecord::Schema.define(version: 20210225200703) do
+
+  create_table "commune_streets", force: :cascade do |t|
+    t.integer  "commune_id"
+    t.integer  "street_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commune_id"], name: "index_commune_streets_on_commune_id"
+    t.index ["street_id"], name: "index_commune_streets_on_street_id"
+  end
 
   create_table "communes", force: :cascade do |t|
     t.string   "code_insee"
