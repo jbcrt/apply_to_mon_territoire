@@ -1,4 +1,6 @@
 class Intercommunality < ApplicationRecord
+  before_save :set_slug
+
   has_many :communes
 
   validates :name, :siren, presence: true
@@ -9,5 +11,11 @@ class Intercommunality < ApplicationRecord
 
   def communes_hash
     self.communes.pluck(:code_insee, :name).to_h
+  end
+
+  private
+
+  def set_slug
+    self.slug = name.to_s.parameterize if self.slug.nil?
   end
 end
