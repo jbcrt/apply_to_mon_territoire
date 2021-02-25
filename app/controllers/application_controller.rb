@@ -15,6 +15,21 @@ class ApplicationController < ActionController::Base
 
   def render_not_found
     render json: { error: "Not Found" },
-    status: :not_found
+      status: :not_found
+  end
+
+  def render_no_content
+    render json: { errors: "No content" },
+      status: :no_content
+  end
+
+  def render_bad_request
+    render json: { error: "Bad Request" },
+      status: :bad_request
+  end
+
+  def render_error(model)
+    render json: { errors: model.errors.full_messages },
+      status: :unprocessable_entity
   end
 end
