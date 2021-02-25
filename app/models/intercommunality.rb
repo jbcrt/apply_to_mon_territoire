@@ -13,6 +13,10 @@ class Intercommunality < ApplicationRecord
     self.communes.pluck(:code_insee, :name).to_h
   end
 
+  def population
+    self.communes.pluck(:population).sum
+  end
+
   private
 
   def set_slug
