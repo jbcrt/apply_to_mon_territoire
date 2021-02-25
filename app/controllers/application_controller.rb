@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
     render json: { errors: "Forbidden" },
       status: :forbidden
   end
+
+  def render_not_found
+    render json: { error: "Not Found" },
+    status: :not_found
+  end
 end
